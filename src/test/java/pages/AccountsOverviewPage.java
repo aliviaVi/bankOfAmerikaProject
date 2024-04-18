@@ -22,6 +22,8 @@ public class AccountsOverviewPage extends BasePage {
 
     @FindBy(xpath = "//*[@class='pt-0 d-flex m-0 card-title']")
     public List<WebElement> cardsTitle;
+    @FindBy(linkText = "Accounts Overview")
+    public WebElement accountsOverviewButton;
 
 
     public AccountsOverviewPage(TestContext context) {
@@ -36,6 +38,10 @@ public class AccountsOverviewPage extends BasePage {
 
         context.wait.until(ExpectedConditions.visibilityOf(textFromOffersAndDeals));
         return textFromOffersAndDeals.getText();
+    }
+    public AccountsOverviewPage overviewPageClick(){
+        accountsOverviewButton.click();
+        return new AccountsOverviewPage(context);
     }
 
     public PayAndTransferPage navigateToTransferPage() {

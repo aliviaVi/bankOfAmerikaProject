@@ -1,15 +1,15 @@
 package tests;
 
 
-import org.junit.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import pages.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
 public class OnlineBankingTests extends BaseTest {
 
     @Test
@@ -25,8 +25,11 @@ public class OnlineBankingTests extends BaseTest {
 
     @Test
     public void offersAndDealsTextTest() {
-        OlbSimulatorPage olbSimulatorPage = new OlbSimulatorPage(context);
-        assertEquals(olbSimulatorPage
+        MainPage mainPage = new MainPage(context);
+
+       // OlbSimulatorPage olbSimulatorPage = new OlbSimulatorPage(context);
+        assertEquals(mainPage
+                        .goToAccountOverviewPage()
                         .overviewPageClick()
                         .getTextFromOffersAndDealsButton(),
                 "Because you're a valued customer, we've selected some special offers just for you.");
@@ -57,7 +60,7 @@ public class OnlineBankingTests extends BaseTest {
     public void mobileBankingAppTest() {
         MobileAppSimulator mobileAppSimulator = new MainPage(context).goToMobileBanking().goToMobileAppSimulator();
         mobileAppSimulator.mobileAppLogIn();
-        assertEquals(mobileAppSimulator.getHelloTextFromBankingApp(), "Hello, Robin");
+        assertEquals(mobileAppSimulator.getHelloTextFromBankingApp(), "Hello, Robin\nPreferred Rewards Platinum Member");
         assertTrue(mobileAppSimulator.isBankingSimulatorButtonPresent());
 
     }

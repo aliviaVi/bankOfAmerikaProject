@@ -29,6 +29,7 @@ public class MobileAppSimulator extends BasePage {
 
     public void mobileAppLogIn() {
         context.wait.until(ExpectedConditions.visibilityOf(deviceIframe));
+        context.driver.switchTo().frame(deviceIframe);
         userNameField.click();
         userNameField.sendKeys(ConfigurationReader.get("userName"));
         passwordField.click();
@@ -37,10 +38,12 @@ public class MobileAppSimulator extends BasePage {
     }
 
     public String getHelloTextFromBankingApp() {
+        context.wait.until(ExpectedConditions.visibilityOf(elementWithTextAfterLogin));
         return elementWithTextAfterLogin.getText();
     }
 
     public boolean isBankingSimulatorButtonPresent() {
+        context.driver.switchTo().defaultContent();
         return onlineBankingSimulatorButton.isDisplayed();
     }
 }

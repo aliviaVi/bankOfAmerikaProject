@@ -3,8 +3,8 @@ package pages;
 import context.TestContext;
 import org.openqa.selenium.support.PageFactory;
 
-abstract class BasePage {
-    TestContext context;
+public class BasePage {
+   public TestContext context;
 
     public BasePage(TestContext context) {
         this.context = context;

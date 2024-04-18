@@ -2,10 +2,11 @@ package tests;
 
 import context.TestContext;
 import io.qameta.allure.Allure;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import utils.ConfigurationReader;
 import utils.DriverFactory;
 
@@ -15,7 +16,7 @@ public class BaseTest {
     TestContext context;
 
 
-    @BeforeEach
+@BeforeMethod
     public void beforeMethod(){
         context = new TestContext();
         context.driver = DriverFactory.get();
@@ -25,7 +26,7 @@ public class BaseTest {
         context.logs =new StringBuilder();
     }
 
-    @AfterEach
+    @AfterMethod
     public void afterMethod() {
         Allure.addAttachment("Console log:", String.valueOf(context.logs));
         if(context.driver!=null){
