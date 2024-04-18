@@ -24,6 +24,11 @@ public class AccountsOverviewPage extends BasePage {
     public List<WebElement> cardsTitle;
     @FindBy(linkText = "Accounts Overview")
     public WebElement accountsOverviewButton;
+    @FindBy(xpath = "//span[@class='top-link'][normalize-space()='Security Center']")
+    public WebElement securityCenterLink;
+
+    @FindBy(xpath = "//a[normalize-space()='Change Password']")
+    public WebElement changePassLink;
 
 
     public AccountsOverviewPage(TestContext context) {
@@ -32,26 +37,22 @@ public class AccountsOverviewPage extends BasePage {
     }
 
     public String getTextFromOffersAndDealsButton() {
-        //  context.wait.until(ExpectedConditions.visibilityOf(offersAndDealsButton));
         popUpWindow.click();
         offersAndDealsButton.click();
 
         context.wait.until(ExpectedConditions.visibilityOf(textFromOffersAndDeals));
         return textFromOffersAndDeals.getText();
     }
-    public AccountsOverviewPage overviewPageClick(){
-        accountsOverviewButton.click();
-        return new AccountsOverviewPage(context);
-    }
-
-    public PayAndTransferPage navigateToTransferPage() {
-        popUpWindow.click();
-        context.wait.until(ExpectedConditions.visibilityOf(transferBetweenAccounts));
-        transferBetweenAccounts.click();
-        return new PayAndTransferPage(context);
-    }
 
     public int getNumbersOfCards() {
         return cardsTitle.size();
+    }
+    public SecurityDashboardPage goToChangePassword(){
+        securityCenterLink.click();
+        //changePassLink.click();
+        return new SecurityDashboardPage(context);
+    }
+    public void upDate(){
+        popUpWindow.click();
     }
 }

@@ -15,7 +15,7 @@ public class DriverFactory {
         WebDriver driver;
         switch (browser) {
             case "chrome":
-                WebDriverManager.chromedriver().clearDriverCache().setup();
+                WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
                 if (ConfigurationReader.get("headless").toLowerCase().contains("true")) {
                     options.addArguments("--headless");

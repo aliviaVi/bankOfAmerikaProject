@@ -19,6 +19,8 @@ public class MainPage extends BasePage {
     public WebElement mobileBankingButton;
 
 
+
+
     public AlertsPage goToalertsPage() {
         alertsButton.click();
         return new AlertsPage(context);
@@ -39,4 +41,6 @@ public class MainPage extends BasePage {
         mobileBankingButton.click();
         return new MobileBankingPage(context);
     }
+
+
 }

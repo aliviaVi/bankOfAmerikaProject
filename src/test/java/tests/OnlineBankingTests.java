@@ -14,23 +14,17 @@ public class OnlineBankingTests extends BaseTest {
 
     @Test
     public void alertHistoryTest() {
-        //OlbSimulatorPage olbSimulatorPage = new OlbSimulatorPage(context);
-        // assertEquals(olbSimulatorPage.alertsClick().getTextFromTable(), "3/7/2024");
         assertEquals(new MainPage(context)
                         .goToalertsPage()
-                        .alertsClick()
                         .getTextFromTable(),
-                "3/7/2024");
+                "3/8/2024");
     }
 
     @Test
     public void offersAndDealsTextTest() {
         MainPage mainPage = new MainPage(context);
-
-       // OlbSimulatorPage olbSimulatorPage = new OlbSimulatorPage(context);
         assertEquals(mainPage
                         .goToAccountOverviewPage()
-                        .overviewPageClick()
                         .getTextFromOffersAndDealsButton(),
                 "Because you're a valued customer, we've selected some special offers just for you.");
     }
@@ -63,5 +57,17 @@ public class OnlineBankingTests extends BaseTest {
         assertEquals(mobileAppSimulator.getHelloTextFromBankingApp(), "Hello, Robin\nPreferred Rewards Platinum Member");
         assertTrue(mobileAppSimulator.isBankingSimulatorButtonPresent());
 
+    }
+
+    @Test
+    public void changePassword() {
+        AccountsOverviewPage accountsOverviewPage = new MainPage(context).goToAccountOverviewPage();
+        accountsOverviewPage.upDate();
+        SecurityDashboardPage securityDashboardPage = accountsOverviewPage.goToChangePassword();
+        securityDashboardPage.changePassword();
+        securityDashboardPage.submitNewPassword();
+        assertEquals(securityDashboardPage.getText(), "Your passcode has been changed.");
+        //TO DO clear about this result
+        assertTrue(securityDashboardPage.slideBarChangePasscode.isEnabled());
     }
 }
