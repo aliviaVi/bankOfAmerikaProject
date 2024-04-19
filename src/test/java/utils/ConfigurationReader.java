@@ -17,6 +17,7 @@ public class ConfigurationReader {
 
             properties = new Properties();
             properties.load(inputStream);
+            inputStream.close();
 
         } catch (Exception e) {
             e.printStackTrace();
