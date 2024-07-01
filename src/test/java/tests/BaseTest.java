@@ -37,7 +37,7 @@ public class BaseTest {
                 TakesScreenshot takesScreenshot = (TakesScreenshot) context.driver;
                 byte[] screenshot = takesScreenshot.getScreenshotAs(OutputType.BYTES);
 
-                Allure.addAttachment("Skreeshot at the fail test", new ByteArrayInputStream(screenshot));
+                Allure.addAttachment("Skreenshot at the fail test", new ByteArrayInputStream(screenshot));
             } catch (Exception e) {
                 e.printStackTrace();
             }

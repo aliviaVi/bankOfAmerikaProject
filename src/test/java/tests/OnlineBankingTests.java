@@ -4,6 +4,7 @@ package tests;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -23,7 +24,26 @@ public class OnlineBankingTests extends BaseTest {
         assertEquals(new MainPage(context)
                         .goToalertsPage()
                         .getTextFromTable(),
-                "3/8/2024");
+                "5/20/2024");
+    }
+
+    @Test
+    @Epic("Web Interface")
+    @Story("Aletrs Settings")
+    @Description("checked the toggle in Alerts Settings ")
+    public void alertSettingsTest() {
+     MainPage mainPage =  new MainPage(context);
+        AlertsPage alertsPage = mainPage.goToalertsPage();
+        AlertSettingsPage alertSettingsPage = alertsPage.goToAlertsSettingsPage();
+        alertSettingsPage.setToggleAndEmailCheckBox();
+        WebElement togglerDeducted = alertSettingsPage.togglerDeducted;
+      //  WebElement element = alertSettingsPage.listsOfEmailInputBox.get(0);
+        WebElement checkBox = alertSettingsPage.checkBox;
+        assertTrue(togglerDeducted.isEnabled());
+       // assertTrue(element.isSelected());
+        assertTrue(checkBox.isEnabled());
+
+
     }
 
     @Test
