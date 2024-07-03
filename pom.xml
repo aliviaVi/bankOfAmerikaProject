@@ -8,22 +8,12 @@
     <artifactId>bankOfAmerikaProject</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit_version>5.10.1</junit_version>
-        <allure_version>2.25.0</allure_version>
-        <allure-maven_version>2.12.0</allure-maven_version>
-        <webdrivermanager_version>5.7.0</webdrivermanager_version>
-        <selenium-java_version>4.16.1</selenium-java_version>
-        <aspectjweaver_version>1.9.21</aspectjweaver_version>
-        <logback-classic_version>1.4.14</logback-classic_version>
-        <assertj-core_version>3.24.2</assertj-core_version>
-        <maven-resources-plugin_version>3.3.1</maven-resources-plugin_version>
-        <maven-surefire-plugin_version>3.2.3</maven-surefire-plugin_version>
-        <maven-compiler-plugin_version>3.11.0</maven-compiler-plugin_version>
+        <allure_version>2.24.0</allure_version>
     </properties>
 
     <build>
@@ -31,18 +21,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin_version}</version>
                 <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
+                    <source>21</source>
+                    <target>21</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${maven-surefire-plugin_version}</version>
+                <version>3.0.0-M3</version>
                 <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
                     <properties>
                         <property>
                             <name>listener</name>
@@ -53,42 +41,47 @@
                         <include>**/tests/**.java</include>
                     </includes>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.21/aspectjweaver-1.9.21.jar"
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
                     </argLine>
-                    <systemPropertyVariables>
-                        <junit.jupiter.extensions.autodetection.enabled>
-                            true
-                        </junit.jupiter.extensions.autodetection.enabled>
-                    </systemPropertyVariables>
+                    <systemProperties>
+                        <property>
+                            <name>allure.results.directory</name>
+                            <value>${project.basedir}/target/allure-results</value>
+                        </property>
+                        <property>
+                            <name>junit.jupiter.extensions.autodetection.enabled</name>
+                            <value>true</value>
+                        </property>
+                    </systemProperties>
                     <reportFormat>plain</reportFormat>
                 </configuration>
                 <dependencies>
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectjweaver_version}</version>
+                        <version>1.9.6</version>
                     </dependency>
                     <dependency>
                         <groupId>org.junit.jupiter</groupId>
                         <artifactId>junit-jupiter-api</artifactId>
-                        <version>${junit_version}</version>
+                        <version>5.10.1</version>
                     </dependency>
                     <dependency>
                         <groupId>org.junit.jupiter</groupId>
                         <artifactId>junit-jupiter-engine</artifactId>
-                        <version>${junit_version}</version>
+                        <version>5.10.1</version>
                     </dependency>
                 </dependencies>
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>${allure-maven_version}</version>
+                <version>2.12.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven-resources-plugin_version}</version>
+                <version>3.2.0</version>
                 <executions>
                     <execution>
                         <id>copy-test-history</id>
@@ -115,22 +108,22 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit_version}</version>
-            <!--            <scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>${selenium-java_version}</version>
+            <version>4.16.1</version>
         </dependency>
+
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager_version}</version>
+            <version>5.6.2</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${logback-classic_version}</version>
+            <version>1.4.11</version>
         </dependency>
         <!--Allure Reporting Dependencies-->
         <dependency>
@@ -142,13 +135,13 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>${aspectjweaver_version}</version>
+            <version>1.9.6</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
-            <version>${assertj-core_version}</version>
+            <version>3.24.2</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.opentest4j</groupId>
@@ -165,7 +158,7 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.8.0</version>
+            <version>7.10.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -183,5 +176,3 @@
     </dependencyManagement>
 
 </project>
-
-

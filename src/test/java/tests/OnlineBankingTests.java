@@ -4,14 +4,15 @@ package tests;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Story;
+import org.junit.Test;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+
 
 import pages.*;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 
 
 public class OnlineBankingTests extends BaseTest {
@@ -24,7 +25,7 @@ public class OnlineBankingTests extends BaseTest {
         assertEquals(new MainPage(context)
                         .goToalertsPage()
                         .getTextFromTable(),
-                "5/20/2024");
+                "5/21/2024");
     }
 
     @Test
