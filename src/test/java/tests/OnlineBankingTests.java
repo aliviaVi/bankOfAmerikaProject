@@ -1,11 +1,13 @@
 package tests;
 
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Story;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
 
 
 import pages.*;
@@ -18,9 +20,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class OnlineBankingTests extends BaseTest {
 
     @Test
-    @Epic("Web Interface")
-    @Story("Aletrs")
-    @Description("checked the first text in alerts list ")
+  //  @Epic("Web Interface")
+  //  @Story("Aletrs")
+  //  @Description("checked the first text in alerts list ")
     public void alertHistoryTest() {
         assertEquals(new MainPage(context)
                         .goToalertsPage()
@@ -29,9 +31,9 @@ public class OnlineBankingTests extends BaseTest {
     }
 
     @Test
-    @Epic("Web Interface")
-    @Story("Aletrs Settings")
-    @Description("checked the toggle in Alerts Settings ")
+   // @Epic("Web Interface")
+  //  @Story("Aletrs Settings")
+  //  @Description("checked the toggle in Alerts Settings ")
     public void alertSettingsTest() {
      MainPage mainPage =  new MainPage(context);
         AlertsPage alertsPage = mainPage.goToalertsPage();
@@ -48,9 +50,9 @@ public class OnlineBankingTests extends BaseTest {
     }
 
     @Test
-    @Epic("Web Interface")
-    @Story("Offers and deals")
-    @Description("checked special offers for customer")
+   // @Epic("Web Interface")
+   // @Story("Offers and deals")
+   // @Description("checked special offers for customer")
     public void offersAndDealsTextTest() {
         MainPage mainPage = new MainPage(context);
         assertEquals(mainPage
@@ -60,9 +62,9 @@ public class OnlineBankingTests extends BaseTest {
     }
 
     @Test
-    @Epic("Web Interface")
-    @Story("Transfer between customer accounts")
-    @Description("made a transfer between firsts accounts")
+   // @Epic("Web Interface")
+  //  @Story("Transfer between customer accounts")
+  //  @Description("made a transfer between firsts accounts")
     public void transferBetweenAccountsTest() {
         MainPage mainPage = new MainPage(context);
         assertEquals(mainPage
@@ -76,9 +78,9 @@ public class OnlineBankingTests extends BaseTest {
     }
 
     @Test
-    @Epic("Web Interface")
-    @Story("Account")
-    @Description("checked a customer's number of accounts")
+  //  @Epic("Web Interface")
+  //  @Story("Account")
+   // @Description("checked a customer's number of accounts")
     public void checkOfMyAccountsTest() {
         assertEquals(new MainPage(context)
                         .goToAccountOverviewPage()
@@ -87,9 +89,9 @@ public class OnlineBankingTests extends BaseTest {
     }
 
     @Test
-    @Epic("Mobile web interface")
-    @Story("mobile Banking")
-    @Description("checked a login possibility throw mobile interface")
+ //   @Epic("Mobile web interface")
+  //  @Story("mobile Banking")
+  //  @Description("checked a login possibility throw mobile interface")
     public void mobileBankingAppTest() {
         MobileAppSimulator mobileAppSimulator = new MainPage(context).goToMobileBanking().goToMobileAppSimulator();
         mobileAppSimulator.mobileAppLogIn();
@@ -99,9 +101,9 @@ public class OnlineBankingTests extends BaseTest {
     }
 
     @Test
-    @Epic("Web interface")
-    @Story("Security")
-    @Description("checked a possibility to change password")
+   // @Epic("Web interface")
+   // @Story("Security")
+   // @Description("checked a possibility to change password")
     public void changePassword() {
         AccountsOverviewPage accountsOverviewPage = new MainPage(context).goToAccountOverviewPage();
         accountsOverviewPage.upDate();

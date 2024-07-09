@@ -3,6 +3,7 @@ package pages;
 import context.TestContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class MainPage extends BasePage {
     public MainPage(TestContext context) {
@@ -18,9 +19,22 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//a[text()='Mobile Banking']")
     public WebElement mobileBankingButton;
 
+    @FindBy(xpath = "//*[@id='onetrust-accept-btn-handler']")
+    public WebElement cookieButton;
 
+    @FindBy(xpath = "//*[@id='landing_after']")
+    public WebElement goToAccountButton;
 
+    public MainPage cookieWeg() {
+        context.wait.until(ExpectedConditions.visibilityOf(cookieButton));
+        cookieButton.click();
+        return new MainPage(context);
+    }
 
+    public String TextGoToButton () {
+
+        return goToAccountButton.getText();
+    }
     public AlertsPage goToalertsPage() {
         alertsButton.click();
         return new AlertsPage(context);
