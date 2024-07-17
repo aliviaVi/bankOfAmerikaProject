@@ -207,6 +207,7 @@
         </dependencies>
     </dependencyManagement>
 
+
 </project>
 
         <!-- mvn clean test generate-test-resources allure::report process-test-resources allure::serve -->

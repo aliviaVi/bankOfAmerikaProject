@@ -25,6 +25,7 @@ public class OnlineBankingTests extends BaseTest {
   //  @Description("checked the first text in alerts list ")
     public void alertHistoryTest() {
         assertEquals(new MainPage(context)
+                .cookieWeg()
                         .goToalertsPage()
                         .getTextFromTable(),
                 "5/21/2024");
@@ -36,6 +37,7 @@ public class OnlineBankingTests extends BaseTest {
   //  @Description("checked the toggle in Alerts Settings ")
     public void alertSettingsTest() {
      MainPage mainPage =  new MainPage(context);
+     mainPage.cookieWeg();
         AlertsPage alertsPage = mainPage.goToalertsPage();
         AlertSettingsPage alertSettingsPage = alertsPage.goToAlertsSettingsPage();
         alertSettingsPage.setToggleAndEmailCheckBox();
@@ -56,6 +58,7 @@ public class OnlineBankingTests extends BaseTest {
     public void offersAndDealsTextTest() {
         MainPage mainPage = new MainPage(context);
         assertEquals(mainPage
+                .cookieWeg()
                         .goToAccountOverviewPage()
                         .getTextFromOffersAndDealsButton(),
                 "Because you're a valued customer, we've selected some special offers just for you.");
@@ -68,6 +71,7 @@ public class OnlineBankingTests extends BaseTest {
     public void transferBetweenAccountsTest() {
         MainPage mainPage = new MainPage(context);
         assertEquals(mainPage
+                .cookieWeg()
                         .goToTransferDashboardPage()
                         .toMakeTransferPage()
                         .makeTransfer()
@@ -83,6 +87,7 @@ public class OnlineBankingTests extends BaseTest {
    // @Description("checked a customer's number of accounts")
     public void checkOfMyAccountsTest() {
         assertEquals(new MainPage(context)
+                .cookieWeg()
                         .goToAccountOverviewPage()
                         .getNumbersOfCards(),
                 4);
@@ -93,7 +98,8 @@ public class OnlineBankingTests extends BaseTest {
   //  @Story("mobile Banking")
   //  @Description("checked a login possibility throw mobile interface")
     public void mobileBankingAppTest() {
-        MobileAppSimulator mobileAppSimulator = new MainPage(context).goToMobileBanking().goToMobileAppSimulator();
+        MobileAppSimulator mobileAppSimulator = new MainPage(context)
+                .cookieWeg().goToMobileBanking().goToMobileAppSimulator();
         mobileAppSimulator.mobileAppLogIn();
         assertEquals(mobileAppSimulator.getHelloTextFromBankingApp(), "Hello, Robin\nPreferred Rewards Platinum Member");
         assertTrue(mobileAppSimulator.isBankingSimulatorButtonPresent());
