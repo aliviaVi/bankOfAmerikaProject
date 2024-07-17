@@ -4,7 +4,7 @@ import context.TestContext;
 import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {
-   public TestContext context;
+    TestContext context;
 
     public BasePage(TestContext context) {
         this.context = context;

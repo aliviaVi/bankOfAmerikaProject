@@ -4,26 +4,32 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>bankOfAmerikaProject</artifactId>
+    <groupId>com.eurotech</groupId>
+    <artifactId>pom-project</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit_version>5.10.1</junit_version>
-        <allure_version>2.25.0</allure_version>
-        <allure-maven_version>2.12.0</allure-maven_version>
-        <webdrivermanager_version>5.7.0</webdrivermanager_version>
-        <selenium-java_version>4.16.1</selenium-java_version>
-        <aspectjweaver_version>1.9.21</aspectjweaver_version>
-        <logback-classic_version>1.4.14</logback-classic_version>
-        <assertj-core_version>3.24.2</assertj-core_version>
-        <maven-resources-plugin_version>3.3.1</maven-resources-plugin_version>
-        <maven-surefire-plugin_version>3.2.3</maven-surefire-plugin_version>
+        <maven-surefire-plugin_version>3.3.0</maven-surefire-plugin_version>
+        <maven-resources-plugin_version>3.2.0</maven-resources-plugin_version>
         <maven-compiler-plugin_version>3.11.0</maven-compiler-plugin_version>
+
+        <junit_version>5.10.1</junit_version>
+        <junit-jupiter-api_version>5.10.1</junit-jupiter-api_version>
+        <junit-jupiter-engine_version>5.10.1</junit-jupiter-engine_version>
+
+        <allure-junit5_version>2.25.0</allure-junit5_version>
+        <allure-bom_version>2.25.0</allure-bom_version>
+        <allure-maven_version>2.12.0</allure-maven_version>
+
+        <selenium-java_version>4.16.1</selenium-java_version>
+        <webdrivermanager_version>5.6.2</webdrivermanager_version>
+        <logback-classic_version>1.4.14</logback-classic_version>
+        <aspectjweaver_version>1.9.21</aspectjweaver_version>
+        <assertj-core_version>3.24.2</assertj-core_version>
     </properties>
 
     <build>
@@ -32,9 +38,11 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin_version}</version>
+
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
+
                 </configuration>
             </plugin>
             <plugin>
@@ -53,9 +61,12 @@
                         <include>**/tests/**.java</include>
                     </includes>
                     <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.21/aspectjweaver-1.9.21.jar"
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
                     </argLine>
                     <systemPropertyVariables>
+                        <allure.results.directory>
+                            ${project.basedir}/target/allure-results
+                        </allure.results.directory>
                         <junit.jupiter.extensions.autodetection.enabled>
                             true
                         </junit.jupiter.extensions.autodetection.enabled>
@@ -71,12 +82,12 @@
                     <dependency>
                         <groupId>org.junit.jupiter</groupId>
                         <artifactId>junit-jupiter-api</artifactId>
-                        <version>${junit_version}</version>
+                        <version>${junit-jupiter-api_version}</version>
                     </dependency>
                     <dependency>
                         <groupId>org.junit.jupiter</groupId>
                         <artifactId>junit-jupiter-engine</artifactId>
-                        <version>${junit_version}</version>
+                        <version>${junit-jupiter-engine_version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -91,13 +102,28 @@
                 <version>${maven-resources-plugin_version}</version>
                 <executions>
                     <execution>
-                        <id>copy-test-history</id>
-                        <phase>generate-sources</phase>
+                        <id>copy-test-history-to</id>
+                        <phase>generate-test-resources</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
                             <outputDirectory>${basedir}/target/allure-results/history/</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/.allure/history/</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-test-history-from</id>
+                        <phase>process-test-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/.allure/history/</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${basedir}/target/site/allure-maven-plugin/history/</directory>
@@ -115,7 +141,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit_version}</version>
-            <!--            <scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -136,7 +161,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit5</artifactId>
-            <version>${allure_version}</version>
+            <version>${allure-junit5_version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
         <dependency>
@@ -157,17 +182,17 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.8.0</version>
+            <version>7.10.2</version>
             <scope>test</scope>
         </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>org.testng</groupId>-->
+        <!--            <artifactId>testng</artifactId>-->
+        <!--            <version>7.10.2</version>-->
+        <!--            <scope>test</scope>-->
+        <!--        </dependency>-->
     </dependencies>
 
     <dependencyManagement>
@@ -175,13 +200,15 @@
             <dependency>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-bom</artifactId>
-                <version>${allure_version}</version>
+                <version>${allure-bom_version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
 
+
 </project>
 
-
+        <!-- mvn clean test generate-test-resources allure::report process-test-resources allure::serve -->
+        <!--allure serve target/allure-results-->
