@@ -50,3 +50,9 @@ Z
 *src/test/java/com/utils/DriverFactory.java,4/d/4df838764ebf238d065ea544b3aa6ef407975015
 Z
 *src/test/java/com/context/TestContext.java,2/6/269314d3cb321e90373d8cbf745d239b8ff57c8d
+Z
+*src/test/java/com/steps/MainPageSteps.java,1/f/1f80f270ed2f7fb29e727bc765524c6f38f30b95
+W
+'src/resources/features/MainPage.feature,d/d/dd4e3278a3d9db519710f900ce771de5f16f2090
+d
+4src/test/java/com/tests/MobileAppSimulatorTests.java,a/f/aff06be960455359a68f445acbd414752db69e22

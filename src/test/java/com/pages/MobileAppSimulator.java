@@ -26,11 +26,15 @@ public class MobileAppSimulator extends BasePage {
     public WebElement elementWithTextAfterLogin;
     @FindBy(xpath = "//*[@class='bac_button blue'] [text()='Online Banking Simulator']")
     public WebElement onlineBankingSimulatorButton;
+    @FindBy(xpath = "//button[text()='Accept All Optional Cookies']")
+    public WebElement acceptMobileCookiesBtn;
 
 
     public void mobileAppLogIn() {
         context.wait.until(ExpectedConditions.visibilityOf(deviceIframe));
         context.driver.switchTo().frame(deviceIframe);
+        acceptMobileCookiesBtn.click();
+        context.wait.until(ExpectedConditions.visibilityOf(userNameField));
         userNameField.click();
         userNameField.sendKeys(ConfigurationReader.get("userName"));
         passwordField.click();

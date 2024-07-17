@@ -48,9 +48,7 @@ public class AccountsOverviewPage extends BasePage {
     }
 
     public String getTextFromOffersAndDealsButton() {
-        popUpWindow.click();
         offersAndDealsButton.click();
-
         context.wait.until(ExpectedConditions.visibilityOf(textFromOffersAndDeals));
         return textFromOffersAndDeals.getText();
     }
@@ -67,8 +65,12 @@ public class AccountsOverviewPage extends BasePage {
         popUpWindow.click();
     }
 
-    public void goToCheckAlertsText(){
+    public String goToCheckAlertsText(){
         alertsTab.click();
         popOverInAlertTab.click();
+        return textInPopOver.getText();
+    }
+    public String getTextFromPopover(){
+        return textInPopOver.getText();
     }
 }

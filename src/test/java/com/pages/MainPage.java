@@ -16,7 +16,7 @@ public class MainPage extends BasePage {
     public WebElement accountOverviewButton;
     @FindBy(xpath = "//a[text()='Transfers']")
     public WebElement transfersButton;
-    @FindBy(xpath = "//a[text()='Mobile Banking']")
+    @FindBy(xpath = "//button[text()='Visit our Mobile Banking Simulator']")
     public WebElement mobileBankingButton;
 
 

@@ -15,15 +15,14 @@ public class TransferDashBoardPageTests extends BaseTest{
     @Story("Transfer between customer accounts")
     @Description("made a transfer between firsts accounts")
     public void transferBetweenAccountsTest() {
-        MainPage mainPage = new MainPage(context);
-        assertEquals(mainPage
+
+        assertEquals("Your transfer is confirmed.",new MainPage(context)
                         .cookieWeg()
                         .goToTransferDashboardPage()
                         .toMakeTransferPage()
                         .makeTransfer()
                         .clickTransfer()
-                        .getTextSuccess(),
-                "Your transfer is confirmed.");
+                        .getTextSuccess());
 
     }
 }

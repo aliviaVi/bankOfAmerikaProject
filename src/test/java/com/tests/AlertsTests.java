@@ -19,11 +19,11 @@ public class AlertsTests  extends BaseTest {
     @Story("Alerts")
     @Description("checked the first text in alerts list ")
     public void alertHistoryTest() {
-        assertEquals(new MainPage(context)
+        assertEquals("6/6/2024",
+                new MainPage(context)
                         .cookieWeg()
                         .goToalertsPage()
-                        .getTextFromTable(),
-                "6/6/2024");
+                        .getTextFromTable());
     }
     @Test
     @Epic("Web Interface")
@@ -31,15 +31,15 @@ public class AlertsTests  extends BaseTest {
     @Description("checked the toggle in Alerts Settings ")
     public void alertSettingsTest() {
         MainPage mainPage =  new MainPage(context);
-        mainPage.cookieWeg();
-        AlertsPage alertsPage = mainPage.goToalertsPage();
-        AlertSettingsPage alertSettingsPage = alertsPage.goToAlertsSettingsPage();
+        AlertSettingsPage alertSettingsPage = mainPage
+                .cookieWeg()
+                .goToalertsPage()
+                .goToAlertsSettingsPage();
         alertSettingsPage.setToggleAndEmailCheckBox();
         WebElement togglerDeducted = alertSettingsPage.togglerDeducted;
-        //  WebElement element = alertSettingsPage.listsOfEmailInputBox.get(0);
         WebElement checkBox = alertSettingsPage.checkBox;
+
         assertTrue(togglerDeducted.isEnabled());
-        // assertTrue(element.isSelected());
         assertTrue(checkBox.isEnabled());
     }
     @Test
@@ -47,16 +47,16 @@ public class AlertsTests  extends BaseTest {
     @Story("Alerts Settings")
     @Description("change low balance ")
     public void alertSettingsChangeLowBalance(){
-        MainPage mainPage = new MainPage(context);
-        mainPage.cookieWeg();
-        AlertsPage alertsPage = mainPage.goToalertsPage();
-        AlertSettingsPage alertSettingsPage = alertsPage.goToAlertsSettingsPage();
+
+        AlertSettingsPage alertSettingsPage  = new MainPage(context)
+                .cookieWeg()
+                .goToalertsPage()
+                .goToAlertsSettingsPage();
         alertSettingsPage.changeLowBalance();
         WebElement lowBalanceCheckBox = alertSettingsPage.lowBalanceCheckBox;
         WebElement lowBalanceInputField = alertSettingsPage.lowBalanceInputField;
-
-
         assertTrue(lowBalanceCheckBox.isEnabled());
+        // TO DO make an assert to proof text in input field
       //  assertEquals("10000",lowBalanceInputField.getText());
     }
 

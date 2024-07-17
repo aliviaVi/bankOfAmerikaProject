@@ -29,6 +29,8 @@
         <webdrivermanager_version>5.6.2</webdrivermanager_version>
         <logback-classic_version>1.4.14</logback-classic_version>
         <aspectjweaver_version>1.9.21</aspectjweaver_version>
+        <aspectj.version>1.9.22</aspectj.version>
+        <cucumber.version>7.16.1</cucumber.version>
         <assertj-core_version>3.24.2</assertj-core_version>
     </properties>
 
@@ -52,25 +54,32 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <properties>
+                        <configurationParameters>
+                            cucumber.junit-platform.naming-strategy=long
+                        </configurationParameters>
                         <property>
                             <name>listener</name>
                             <value>io.qameta.allure.junit5.AllureJunit5</value>
                         </property>
+
                     </properties>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        <!--     -Dcucumber.plugin="io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"-->
+                    </argLine>
+                    <systemPropertyVariables>
+                        <allure.results.directory>${project.basedir}/target/allure-results</allure.results.directory>
+                        <junit.jupiter.extensions.autodetection.enabled>true
+                        </junit.jupiter.extensions.autodetection.enabled>
+                    </systemPropertyVariables>
                     <includes>
                         <include>**/tests/**.java</include>
+                        <include>**/RunCucumberTest.java</include>
                     </includes>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.9.6/aspectjweaver-1.9.6.jar"
                     </argLine>
-                    <systemPropertyVariables>
-                        <allure.results.directory>
-                            ${project.basedir}/target/allure-results
-                        </allure.results.directory>
-                        <junit.jupiter.extensions.autodetection.enabled>
-                            true
-                        </junit.jupiter.extensions.autodetection.enabled>
-                    </systemPropertyVariables>
+
                     <reportFormat>plain</reportFormat>
                 </configuration>
                 <dependencies>
@@ -163,6 +172,16 @@
             <artifactId>allure-junit5</artifactId>
             <version>${allure-junit5_version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-cucumber7-jvm</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-junit-platform</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -187,6 +206,22 @@
             <version>7.10.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit-platform-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.12</version>
+            <scope>test</scope>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.testng</groupId>-->
 <!--            <artifactId>testng</artifactId>-->
@@ -201,6 +236,20 @@
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-bom</artifactId>
                 <version>${allure-bom_version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.10.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.cucumber</groupId>
+                <artifactId>cucumber-bom</artifactId>
+                <version>${cucumber.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

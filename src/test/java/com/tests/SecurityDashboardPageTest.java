@@ -17,12 +17,18 @@ public class SecurityDashboardPageTest extends BaseTest {
     @Story("Security")
     @Description("checked a possibility to change password")
     public void changePassword() {
-        AccountsOverviewPage accountsOverviewPage = new MainPage(context).cookieWeg().goToAccountOverviewPage();
-        SecurityDashboardPage securityDashboardPage = accountsOverviewPage.goToChangePassword();
+        SecurityDashboardPage securityDashboardPage = new MainPage(context)
+                .cookieWeg()
+                .goToAccountOverviewPage()
+                .goToChangePassword();
+
         securityDashboardPage.changePassword();
-        securityDashboardPage.submitNewPassword();
-        assertEquals(securityDashboardPage.getText(), "Your passcode has been changed.");
+
+
+        assertEquals("Your passcode has been changed.", securityDashboardPage.getText());
         //TO DO clear about this result
         assertTrue(securityDashboardPage.slideBarChangePasscode.isEnabled());
+
+        securityDashboardPage.submitNewPassword();
     }
 }

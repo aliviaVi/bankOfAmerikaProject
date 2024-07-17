@@ -15,17 +15,17 @@ public class AccountoverwievPageTests extends BaseTest {
     @Story("Account overview")
     @Description("check the popover in alerts tab")
     public void popoverInMainPage() {
-        MainPage mainPage = new MainPage(context);
-        mainPage.cookieWeg();
-        AccountsOverviewPage accountsOverviewPage = mainPage.goToAccountOverviewPage();
-        accountsOverviewPage.goToCheckAlertsText();
+        assertEquals("Your Balances Qualify You for Preferred Rewards",
+                new MainPage(context)
+                        .cookieWeg()
+                        .goToAccountOverviewPage()
+                        .goToCheckAlertsText());
 
-        assertEquals("Your Balances Qualify You for Preferred Rewards", accountsOverviewPage.textInPopOver.getText());
-        accountsOverviewPage.closePopOverBtn.click();
 
     }
+
     @Test
-   @Epic("Web Interface")
+    @Epic("Web Interface")
     @Story("Account")
     @Description("checked a customer's number of accounts")
     public void checkOfMyAccountsTest() {

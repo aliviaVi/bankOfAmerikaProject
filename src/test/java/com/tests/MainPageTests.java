@@ -19,14 +19,12 @@ public class MainPageTests extends BaseTest {
     @Description("checked special offers for customer")
     public void offersAndDealsTextTest() {
         MainPage mainPage = new MainPage(context);
-        assertEquals(mainPage
+        assertEquals("Because you're a valued customer, we've selected some special offers just for you.",
+                mainPage
                         .cookieWeg()
                         .goToAccountOverviewPage()
-                        .getTextFromOffersAndDealsButton(),
-                "Because you're a valued customer, we've selected some special offers just for you.");
+                        .getTextFromOffersAndDealsButton());
     }
-
-
 
 
 }
