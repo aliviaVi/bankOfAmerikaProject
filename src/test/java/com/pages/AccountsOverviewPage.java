@@ -1,7 +1,7 @@
-package pages;
+package com.pages;
 
-import
-        context.TestContext;
+
+import com.context.TestContext;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,6 +29,17 @@ public class AccountsOverviewPage extends BasePage {
 
     @FindBy(xpath = "//a[normalize-space()='Change Password']")
     public WebElement changePassLink;
+    @FindBy(css = "#alertTab")
+    public WebElement alertsTab;
+    @FindBy(id="Popover1")
+    public WebElement popOverInAlertTab;
+    @FindBy(xpath = "//*[@id=\"alertTabPane\"]/div/div/div/div/div[1]/div[1]/div")
+    public WebElement popOver;
+    @FindBy(xpath = "//h2[text()='Your Balances Qualify You for Preferred Rewards']")
+    public  WebElement textInPopOver;
+   // @FindBy(css = "#close-confirmation-modal")
+    @FindBy(xpath = "//*[@id=\"alertTabPane\"]/div/div/div/div/div[1]/div[1]/div/a")
+    public WebElement closePopOverBtn;
 
 
     public AccountsOverviewPage(TestContext context) {
@@ -54,5 +65,10 @@ public class AccountsOverviewPage extends BasePage {
     }
     public void upDate(){
         popUpWindow.click();
+    }
+
+    public void goToCheckAlertsText(){
+        alertsTab.click();
+        popOverInAlertTab.click();
     }
 }

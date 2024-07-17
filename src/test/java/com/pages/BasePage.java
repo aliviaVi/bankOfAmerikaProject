@@ -1,6 +1,6 @@
-package pages;
+package com.pages;
 
-import context.TestContext;
+import com.context.TestContext;
 import org.openqa.selenium.support.PageFactory;
 
 public class BasePage {

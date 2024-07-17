@@ -1,4 +1,4 @@
-package context;
+package com.context;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,4 +11,5 @@ public class TestContext {
     public Actions actions;
     public JavascriptExecutor js;
     public StringBuilder logs;
+
 }

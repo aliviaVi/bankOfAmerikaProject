@@ -1,10 +1,11 @@
-package pages;
+package com.pages;
 
-import context.TestContext;
+import com.context.TestContext;
+import com.utils.ConfigurationReader;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import utils.ConfigurationReader;
+//import utils.ConfigurationReader;
 
 public class SecurityDashboardPage extends BasePage{
 

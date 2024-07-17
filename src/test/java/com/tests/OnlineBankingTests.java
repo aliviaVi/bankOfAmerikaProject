@@ -1,6 +1,10 @@
-package tests;
+package com.tests;
 
 
+import com.pages.*;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebElement;
 
@@ -9,32 +13,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 
-
-import pages.*;
-
-
-import static org.junit.jupiter.api.Assertions.*;
-
-
-
 public class OnlineBankingTests extends BaseTest {
 
     @Test
-  //  @Epic("Web Interface")
-  //  @Story("Aletrs")
-  //  @Description("checked the first text in alerts list ")
+    @Epic("Web Interface")
+    @Story("Aletrs")
+    @Description("checked the first text in alerts list ")
     public void alertHistoryTest() {
         assertEquals(new MainPage(context)
-                .cookieWeg()
+                        .cookieWeg()
                         .goToalertsPage()
                         .getTextFromTable(),
-                "5/21/2024");
+                "6/6/2024");
     }
 
     @Test
-   // @Epic("Web Interface")
-  //  @Story("Aletrs Settings")
-  //  @Description("checked the toggle in Alerts Settings ")
+//    @Epic("Web Interface")
+//    @Story("Aletrs Settings")
+//    @Description("checked the toggle in Alerts Settings ")
     public void alertSettingsTest() {
      MainPage mainPage =  new MainPage(context);
      mainPage.cookieWeg();
@@ -52,26 +48,26 @@ public class OnlineBankingTests extends BaseTest {
     }
 
     @Test
-   // @Epic("Web Interface")
-   // @Story("Offers and deals")
-   // @Description("checked special offers for customer")
+//    @Epic("Web Interface")
+//    @Story("Offers and deals")
+//    @Description("checked special offers for customer")
     public void offersAndDealsTextTest() {
         MainPage mainPage = new MainPage(context);
         assertEquals(mainPage
-                .cookieWeg()
+                        .cookieWeg()
                         .goToAccountOverviewPage()
                         .getTextFromOffersAndDealsButton(),
                 "Because you're a valued customer, we've selected some special offers just for you.");
     }
 
     @Test
-   // @Epic("Web Interface")
-  //  @Story("Transfer between customer accounts")
-  //  @Description("made a transfer between firsts accounts")
+//    @Epic("Web Interface")
+//    @Story("Transfer between customer accounts")
+//    @Description("made a transfer between firsts accounts")
     public void transferBetweenAccountsTest() {
         MainPage mainPage = new MainPage(context);
         assertEquals(mainPage
-                .cookieWeg()
+                        .cookieWeg()
                         .goToTransferDashboardPage()
                         .toMakeTransferPage()
                         .makeTransfer()
@@ -82,24 +78,23 @@ public class OnlineBankingTests extends BaseTest {
     }
 
     @Test
-  //  @Epic("Web Interface")
-  //  @Story("Account")
-   // @Description("checked a customer's number of accounts")
+//    @Epic("Web Interface")
+//    @Story("Account")
+//    @Description("checked a customer's number of accounts")
     public void checkOfMyAccountsTest() {
         assertEquals(new MainPage(context)
-                .cookieWeg()
+                        .cookieWeg()
                         .goToAccountOverviewPage()
                         .getNumbersOfCards(),
                 4);
     }
 
     @Test
- //   @Epic("Mobile web interface")
-  //  @Story("mobile Banking")
-  //  @Description("checked a login possibility throw mobile interface")
+//    @Epic("Mobile web interface")
+//    @Story("mobile Banking")
+//    @Description("checked a login possibility throw mobile interface")
     public void mobileBankingAppTest() {
-        MobileAppSimulator mobileAppSimulator = new MainPage(context)
-                .cookieWeg().goToMobileBanking().goToMobileAppSimulator();
+        MobileAppSimulator mobileAppSimulator = new MainPage(context).cookieWeg().goToMobileBanking().goToMobileAppSimulator();
         mobileAppSimulator.mobileAppLogIn();
         assertEquals(mobileAppSimulator.getHelloTextFromBankingApp(), "Hello, Robin\nPreferred Rewards Platinum Member");
         assertTrue(mobileAppSimulator.isBankingSimulatorButtonPresent());
@@ -107,11 +102,11 @@ public class OnlineBankingTests extends BaseTest {
     }
 
     @Test
-   // @Epic("Web interface")
-   // @Story("Security")
-   // @Description("checked a possibility to change password")
+//    @Epic("Web interface")
+//    @Story("Security")
+//    @Description("checked a possibility to change password")
     public void changePassword() {
-        AccountsOverviewPage accountsOverviewPage = new MainPage(context).goToAccountOverviewPage();
+        AccountsOverviewPage accountsOverviewPage = new MainPage(context).cookieWeg().goToAccountOverviewPage();
         accountsOverviewPage.upDate();
         SecurityDashboardPage securityDashboardPage = accountsOverviewPage.goToChangePassword();
         securityDashboardPage.changePassword();
