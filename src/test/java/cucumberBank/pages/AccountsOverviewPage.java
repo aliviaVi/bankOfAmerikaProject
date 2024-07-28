@@ -71,7 +71,9 @@ public class AccountsOverviewPage extends BasePage {
         popUpWindow.click();
     }
 
-    public void clickOnAlertsTab(){
+    public void clickOnAlertsTab() throws InterruptedException {
+        Thread.sleep(3000);
+        wait.until(ExpectedConditions.visibilityOf(alertsTab));
         alertsTab.click();
         popOverInAlertTab.click();
     }

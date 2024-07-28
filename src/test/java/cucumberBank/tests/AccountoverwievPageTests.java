@@ -27,7 +27,7 @@ public class AccountoverwievPageTests extends BaseTest {
     @Epic("Web Interface")
     @Story("Account")
     @Description("checked a customer's number of accounts")
-    public void checkOfMyAccountsTest() {
+    public void checkOfMyAccountsTest() throws InterruptedException {
         assertEquals(new MainPage()
                         .cookieWeg()
                         .goToAccountOverviewPage()

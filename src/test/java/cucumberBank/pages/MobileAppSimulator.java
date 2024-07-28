@@ -6,8 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static cucumberBank.context.TestContext.driver;
-import static cucumberBank.context.TestContext.wait;
+import static cucumberBank.context.TestContext.*;
 
 
 public class MobileAppSimulator extends BasePage {
@@ -17,9 +16,13 @@ public class MobileAppSimulator extends BasePage {
         super(context);
     }*/
 
-    @FindBy(id = "device_iframe")
+   // @FindBy(id = "device_iframe")
+   // @FindBy(xpath = "//*[@id=\"device_iframe\"]")
+   // @FindBy(css = "#device_iframe")
+    @FindBy(tagName = "iframe")
     public WebElement deviceIframe;
-    @FindBy(id = "username_field")
+   // @FindBy(id = "username_field")
+    @FindBy(css = "#username_field")
     public WebElement userNameField;
     @FindBy(id = "passcode_field")
     public WebElement passwordField;
@@ -34,8 +37,10 @@ public class MobileAppSimulator extends BasePage {
 
 
     public void mobileAppLogIn() {
-        wait.until(ExpectedConditions.visibilityOf(deviceIframe));
-        driver.switchTo().frame(deviceIframe);
+      // wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(deviceIframe));
+     //  getDriver().switchTo().frame(deviceIframe);
+      //  driver.switchTo().frame(deviceIframe);
+        wait.until(ExpectedConditions.visibilityOf(acceptMobileCookiesBtn));
         acceptMobileCookiesBtn.click();
         wait.until(ExpectedConditions.visibilityOf(userNameField));
         userNameField.click();

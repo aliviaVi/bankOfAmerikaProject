@@ -51,7 +51,7 @@ public class AlertsTests  extends BaseTest {
                 .cookieWeg()
                 .goToalertsPage()
                 .goToAlertsSettingsPage();
-        alertSettingsPage.changeLowBalance();
+        alertSettingsPage.changeLowBalance(alertSettingsPage.newBalance);
         WebElement lowBalanceCheckBox = alertSettingsPage.lowBalanceCheckBox;
         WebElement lowBalanceInputField = alertSettingsPage.lowBalanceInputField;
         assertTrue(lowBalanceCheckBox.isEnabled());

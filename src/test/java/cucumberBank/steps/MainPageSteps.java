@@ -14,30 +14,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainPageSteps {
 
-    public MainPage mainPage =new MainPage();
-    public AccountsOverviewPage accountsOverviewPage;
-    @Given("I open a main page")
-    public void i_open_a_main_page() {
-        scenario.log("Hello");
-    }
-    @And("I accept cookies")
-    public void acceptCookies(){
-        mainPage.cookieWeg();
-    }
-    @And("I go to the account overview page")
-    public void goToAccountOverviewPage(){
-         accountsOverviewPage = mainPage.goToAccountOverviewPage();
-    }
+    public AccountsOverviewPage accountsOverviewPage = new AccountsOverviewPage();
+
     @When("I click on special offers and deals tab")
-    public void clickOnSpecialOffersTab(){
+    public void clickOnSpecialOffersTab() {
         accountsOverviewPage.clickOnOffersAndDealsBtn();
     }
 
     @Then("I should see the result text")
-            public void userShouldSeeTheTextFromOffersAndDealsTab(){
-        assertEquals("Because you're a valued customer, we've selected some special offers just for you.", accountsOverviewPage.getTextFromOffersAndDealsButton());
+    public void userShouldSeeTheTextFromOffersAndDealsTab() {
+        assertEquals("Because you're a valued customer, we've selected some special offers just for you.",
+                accountsOverviewPage.getTextFromOffersAndDealsButton());
     }
-
-
-
 }

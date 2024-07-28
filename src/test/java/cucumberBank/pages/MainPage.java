@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static cucumberBank.context.TestContext.wait;
+import static cucumberBank.context.TestContext.*;
 
 public class MainPage extends BasePage {
 
@@ -27,16 +27,29 @@ public class MainPage extends BasePage {
     public WebElement goToAccountButton;
     @FindBy(css = "#alertTab")
     public WebElement alertsTab;
-    @FindBy(id="Popover1")
+    @FindBy(id = "Popover1")
     public WebElement popOverInAlertTab;
     @FindBy(xpath = "//*[@id=\"alertTabPane\"]/div/div/div/div/div[1]/div[1]/div")
     public WebElement popOver;
     @FindBy(xpath = "//h2[text()='Your Balances Qualify You for Preferred Rewards']")
-    public  WebElement textInPopOver;
-    @FindBy(css = "close-confirmation-modal")
+    public WebElement textInPopOver;
+    @FindBy(css = "#close-confirmation-modal")
     public WebElement closePopOverBtn;
-    @FindBy(xpath = "//button[text()='Update now']")
+   // @FindBy(xpath = "//button[text()='Update now']")
+    @FindBy(css = "button.ba-primary-btn")
     public WebElement updateOnlineBankingBtn;
+    @FindBy(css = "#ba-secondary-btn")
+    public WebElement remindMeLater;
+    @FindBy(xpath = "//*[@id=\"mainContent\"]/nav/ul/li[1]/a")
+    public WebElement alertsSettingsTab;
+    @FindBy(xpath = "//h2[contains(text(), 'View Alerts for:')]")
+    public WebElement viewAlertsText;
+    @FindBy(xpath = "//*[@id=\"device_iframe\"]")
+    public WebElement deviceIframe;
+   // @FindBy(xpath = "//button[text()='Accept All Optional Cookies']")
+    @FindBy(xpath = "//*[@id=\"onetrust-accept-btn-handler\"]")
+    public WebElement acceptMobileCookiesBtn;
+
 
     public MainPage cookieWeg() {
         wait.until(ExpectedConditions.visibilityOf(cookieButton));
@@ -44,7 +57,7 @@ public class MainPage extends BasePage {
         return new MainPage();
     }
 
-    public String TextGoToButton () {
+    public String TextGoToButton() {
 
         return goToAccountButton.getText();
     }
@@ -58,7 +71,6 @@ public class MainPage extends BasePage {
     public AccountsOverviewPage goToAccountOverviewPage() {
         accountOverviewButton.click();
         wait.until(ExpectedConditions.visibilityOf(updateOnlineBankingBtn));
-        wait.until(ExpectedConditions.visibilityOf(closePopOverBtn));
         updateOnlineBankingBtn.click();
         return new AccountsOverviewPage();
 
@@ -69,13 +81,23 @@ public class MainPage extends BasePage {
         return new TransferDashBoardPage();
     }
 
-    public MobileBankingPage goToMobileBanking() {
+    public MobileAppSimulator goToMobileBanking() throws InterruptedException {
         mobileBankingButton.click();
-        return new MobileBankingPage();
+        Thread.sleep(5000);
+
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(deviceIframe));
+      //  getDriver().switchTo().frame(deviceIframe);
+        return new MobileAppSimulator();
     }
-    public void goToCheckAlertsText(){
+
+    public void goToCheckAlertsText() {
         alertsTab.click();
         popOverInAlertTab.click();
+    }
+    public AlertSettingsPage goToAlertsSettingsPage(){
+        alertsSettingsTab.click();
+        wait.until(ExpectedConditions.visibilityOf(viewAlertsText));
+        return  new AlertSettingsPage();
     }
 
 

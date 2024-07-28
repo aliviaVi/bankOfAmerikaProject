@@ -1,3 +1,4 @@
+@ignored
 Feature: MainPage
 
   Scenario: Open main page and check the text into Account overview page
@@ -7,3 +8,5 @@ Feature: MainPage
     And I go to the account overview page
     When I click on special offers and deals tab
     Then I should see the result text
+
+

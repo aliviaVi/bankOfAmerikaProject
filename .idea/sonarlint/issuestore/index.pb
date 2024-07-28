@@ -52,5 +52,15 @@ o
 ?src/test/java/cucumberBank/tests/SecurityDashboardPageTest.java,e/5/e560c91ba3c38fb5a358d0717d0811a550f56658
 p
 @src/test/java/cucumberBank/tests/TransferDashBoardPageTests.java,3/f/3fb498656435ec23f632af58441d7a0c4db4156c
-j
-:src/test/java/cucumberBank/steps/AccountOverwievSteps.java,1/7/17fdf57cf0ab0278996bfcc99ae635dd574cb20d
+o
+?src/test/java/cucumberBank/steps/AccountsOverviewPageSteps.java,d/0/d01d1bd0a8278ed97f0f2172271baec4062dee56
+_
+/src/test/java/cucumberBank/steps/BaseSteps.java,2/e/2ee3e5f9c1b6557f776fae945344bc20946a3370
+p
+@src/test/java/cucumberBank/steps/TransferDashBoardPageSteps.java,7/d/7d0a33677171957ed22d637d3e972f71285087cb
+p
+@src/test/java/cucumberBank/steps/SecurityDashboardPageSteps.java,0/d/0d5dcdc29a2112b584543702c8e1d548c920c49c
+d
+4src/test/java/cucumberBank/steps/AlertPageSteps.java,1/4/14d69f65100bf364c6de4f46a5cdac4b38c68260
+l
+<src/test/java/cucumberBank/steps/MobileBankingPageSteps.java,b/0/b061a22cbff0860b40ddc06b8c35412b0efe2ea5

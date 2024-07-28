@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OnlineBankingTests extends BaseTest {
 
-    @Test
+  /*  @Test
     @Epic("Web Interface")
     @Story("Aletrs")
     @Description("checked the first text in alerts list ")
@@ -26,9 +26,9 @@ public class OnlineBankingTests extends BaseTest {
                         .goToalertsPage()
                         .getTextFromTable(),
                 "6/6/2024");
-    }
+    }*/
 
-    @Test
+ /*   @Test
 //    @Epic("Web Interface")
 //    @Story("Aletrs Settings")
 //    @Description("checked the toggle in Alerts Settings ")
@@ -46,8 +46,8 @@ public class OnlineBankingTests extends BaseTest {
         assertTrue(checkBox.isEnabled());
 
 
-    }
-
+    }*/
+/*
     @Test
 //    @Epic("Web Interface")
 //    @Story("Offers and deals")
@@ -59,13 +59,13 @@ public class OnlineBankingTests extends BaseTest {
                         .goToAccountOverviewPage()
                         .getTextFromOffersAndDealsButton(),
                 "Because you're a valued customer, we've selected some special offers just for you.");
-    }
+    }*/
 
-    @Test
+ //   @Test
 //    @Epic("Web Interface")
 //    @Story("Transfer between customer accounts")
 //    @Description("made a transfer between firsts accounts")
-    public void transferBetweenAccountsTest() {
+ /*   public void transferBetweenAccountsTest() {
         MainPage mainPage = new MainPage();
         assertEquals(mainPage
                         .cookieWeg()
@@ -76,9 +76,9 @@ public class OnlineBankingTests extends BaseTest {
                         .getTextSuccess(),
                 "Your transfer is confirmed.");
 
-    }
+    }*/
 
-    @Test
+ /*   @Test
 //    @Epic("Web Interface")
 //    @Story("Account")
 //    @Description("checked a customer's number of accounts")
@@ -88,7 +88,7 @@ public class OnlineBankingTests extends BaseTest {
                         .goToAccountOverviewPage()
                         .getNumbersOfCards(),
                 4);
-    }
+    }*/
 
    // @Test
 //    @Epic("Mobile web interface")
@@ -102,7 +102,7 @@ public class OnlineBankingTests extends BaseTest {
 
     }*/
 
-    @Test
+ /*   @Test
 //    @Epic("Web interface")
 //    @Story("Security")
 //    @Description("checked a possibility to change password")
@@ -115,5 +115,5 @@ public class OnlineBankingTests extends BaseTest {
         assertEquals(securityDashboardPage.getText(), "Your passcode has been changed.");
         //TO DO clear about this result
         assertTrue(securityDashboardPage.slideBarChangePasscode.isEnabled());
-    }
+    }*/
 }

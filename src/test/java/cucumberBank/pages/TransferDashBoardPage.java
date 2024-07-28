@@ -49,13 +49,15 @@ public class TransferDashBoardPage extends BasePage {
         return new TransferDashBoardPage();
     }
 
-    public TransferDashBoardPage makeTransfer() {
+    public TransferDashBoardPage makeTransfer(String amount) {
         wait.until(ExpectedConditions.visibilityOf(fieldTransferMoneyFrom));
         fieldTransferMoneyFrom.click();
         listTransferMoneyFrom.getFirst().click();
         fieldTransferMoneyTo.click();
         listTransferMoneyTo.get(1).click();
         fieldAmount.click();
+        fieldAmount.clear();
+        fieldAmount.sendKeys(amount);
         fieldFrequency.click();
         listFrequency.getFirst().click();
         buttonNext.click();

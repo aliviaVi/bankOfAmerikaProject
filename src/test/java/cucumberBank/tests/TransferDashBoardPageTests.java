@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TransferDashBoardPageTests extends BaseTest{
-
+//public class TransferDashBoardPageTests extends BaseTest{
+/*
     @Test
     @Epic("Web Interface")
     @Story("Transfer between customer accounts")
@@ -25,4 +25,4 @@ public class TransferDashBoardPageTests extends BaseTest{
                         .getTextSuccess());
 
     }
-}
+}*/

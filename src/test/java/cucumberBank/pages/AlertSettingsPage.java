@@ -23,8 +23,8 @@ public class AlertSettingsPage extends BasePage {
    @FindBy(xpath= "//*[@id=\"mainContent\"]/div[3]/div[1]/div/div/div/div[2]/table/tbody/tr[9]/td[3]/div/div[1]/label/input")
        public WebElement lowBalanceCheckBox;
 
-    String newBalance = "10000";
-    String newBalanceExtraLong = "34500000000000000000000000000000000";
+   public String newBalance = "10000";
+   public String newBalanceExtraLong = "34500000000000000000000000000000000";
 
    /* public AlertSettingsPage(TestContext context) {
         super(context);
@@ -36,7 +36,7 @@ public class AlertSettingsPage extends BasePage {
         checkBox.click();
     }
 
-    public void changeLowBalance(){
+    public void changeLowBalance(String newBalance){
         wait.until(ExpectedConditions.visibilityOf(lowBalanceInputField));
         lowBalanceInputField.click();
         lowBalanceInputField.clear();
