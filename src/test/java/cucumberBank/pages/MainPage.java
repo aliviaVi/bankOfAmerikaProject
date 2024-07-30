@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import java.util.Set;
+
 import static cucumberBank.context.TestContext.*;
 
 public class MainPage extends BasePage {
@@ -29,37 +31,20 @@ public class MainPage extends BasePage {
     public WebElement alertsTab;
     @FindBy(id = "Popover1")
     public WebElement popOverInAlertTab;
-    @FindBy(xpath = "//*[@id=\"alertTabPane\"]/div/div/div/div/div[1]/div[1]/div")
-    public WebElement popOver;
-    @FindBy(xpath = "//h2[text()='Your Balances Qualify You for Preferred Rewards']")
-    public WebElement textInPopOver;
-    @FindBy(css = "#close-confirmation-modal")
-    public WebElement closePopOverBtn;
-   // @FindBy(xpath = "//button[text()='Update now']")
     @FindBy(css = "button.ba-primary-btn")
     public WebElement updateOnlineBankingBtn;
-    @FindBy(css = "#ba-secondary-btn")
-    public WebElement remindMeLater;
     @FindBy(xpath = "//*[@id=\"mainContent\"]/nav/ul/li[1]/a")
     public WebElement alertsSettingsTab;
     @FindBy(xpath = "//h2[contains(text(), 'View Alerts for:')]")
     public WebElement viewAlertsText;
     @FindBy(xpath = "//*[@id=\"device_iframe\"]")
     public WebElement deviceIframe;
-   // @FindBy(xpath = "//button[text()='Accept All Optional Cookies']")
-    @FindBy(xpath = "//*[@id=\"onetrust-accept-btn-handler\"]")
-    public WebElement acceptMobileCookiesBtn;
 
 
     public MainPage cookieWeg() {
         wait.until(ExpectedConditions.visibilityOf(cookieButton));
         cookieButton.click();
         return new MainPage();
-    }
-
-    public String TextGoToButton() {
-
-        return goToAccountButton.getText();
     }
 
 
@@ -82,23 +67,34 @@ public class MainPage extends BasePage {
     }
 
     public MobileAppSimulator goToMobileBanking() throws InterruptedException {
+        String mainWindow = getDriver().getWindowHandle();
         mobileBankingButton.click();
-        Thread.sleep(5000);
-
+        Set<String> windowHandles = getDriver().getWindowHandles();
+        for (String window : windowHandles) {
+            if (!window.equals(mainWindow)) {
+                getDriver().switchTo().window(window);
+            }
+        }
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(deviceIframe));
-      //  getDriver().switchTo().frame(deviceIframe);
+
         return new MobileAppSimulator();
     }
 
-    public void goToCheckAlertsText() {
-        alertsTab.click();
-        popOverInAlertTab.click();
-    }
-    public AlertSettingsPage goToAlertsSettingsPage(){
-        alertsSettingsTab.click();
-        wait.until(ExpectedConditions.visibilityOf(viewAlertsText));
-        return  new AlertSettingsPage();
+    public void closeWindowAfterAssert() {
+        String mainWindow = getDriver().getWindowHandle();
+        Set<String> windowHandles = getDriver().getWindowHandles();
+        for (String window : windowHandles) {
+            if (!window.equals(mainWindow)) {
+                getDriver().switchTo().window(mainWindow);
+            }
+        }
     }
 
+
+    public AlertSettingsPage goToAlertsSettingsPage() {
+        alertsSettingsTab.click();
+        wait.until(ExpectedConditions.visibilityOf(viewAlertsText));
+        return new AlertSettingsPage();
+    }
 
 }

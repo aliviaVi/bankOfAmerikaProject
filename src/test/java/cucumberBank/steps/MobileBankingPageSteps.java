@@ -13,7 +13,7 @@ public class MobileBankingPageSteps {
     private MainPage mainPage = new MainPage();
     private MobileAppSimulator mobileAppSimulator = new MobileAppSimulator();
 
-    String greetingText = "Hello, Robin\\nPreferred Rewards Platinum Member";
+    String greetingText = "Hello, Robin\nPreferred Rewards Platinum Member";
 
 
     @And("I go to the mobile banking app")
@@ -31,5 +31,6 @@ public class MobileBankingPageSteps {
     public void iShouldSeeGreetingTextAndMobileBankingButtonIsPresent() {
         assertEquals(greetingText, mobileAppSimulator.getHelloTextFromBankingApp());
         assertTrue(mobileAppSimulator.isBankingSimulatorButtonPresent());
+        mainPage.closeWindowAfterAssert();
     }
 }

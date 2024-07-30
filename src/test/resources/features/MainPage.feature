@@ -1,4 +1,4 @@
-@ignored
+
 Feature: MainPage
 
   Scenario: Open main page and check the text into Account overview page

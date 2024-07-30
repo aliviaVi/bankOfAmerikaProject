@@ -1,7 +1,7 @@
-@ignored
+
 Feature: AlertsPage
 
-  @ignored
+
   Scenario: Open main page and go to the alerts page
 
     Given I open a main page
@@ -9,7 +9,7 @@ Feature: AlertsPage
     When I go the alerts page
     Then I should see the result date
 
-    @ignored
+
     Scenario: On alerts page change alerts way. put an email and setting toggle.
       Given I open a main page
       And I accept cookies

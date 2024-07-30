@@ -1,4 +1,4 @@
-@ignored
+
 Feature: AccountsOverviewPage
 
   Scenario: Open main page and check the Alert text into Account overview page

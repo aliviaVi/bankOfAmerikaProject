@@ -1,4 +1,4 @@
-@ignored
+
 Feature: SecurityDashboardPage
 
   Scenario: Open main page and go to the setting page to change the actual password

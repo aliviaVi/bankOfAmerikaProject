@@ -1,6 +1,6 @@
 package cucumberBank.pages;
 
-import cucumberBank.context.TestContext;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,9 +10,6 @@ import java.util.List;
 import static cucumberBank.context.TestContext.wait;
 
 public class TransferDashBoardPage extends BasePage {
-   /* public TransferDashBoardPage(TestContext context) {
-        super(context);
-    }*/
 
     @FindBy(xpath = "//div[text()='Between my accounts at Bank of America']/..")
     public WebElement betweenMyAccountsButton;
@@ -43,7 +40,6 @@ public class TransferDashBoardPage extends BasePage {
     public WebElement result;
 
 
-
     public TransferDashBoardPage toMakeTransferPage() {
         betweenMyAccountsButton.click();
         return new TransferDashBoardPage();
@@ -72,6 +68,5 @@ public class TransferDashBoardPage extends BasePage {
     public String getTextSuccess() {
         return result.getText();
     }
-
 
 }
