@@ -6,7 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static cucumberBank.context.TestContext.wait;
+import static cucumberBank.context.TestContext.getWaitThreadLocal;
+
 
 public class AlertSettingsPage extends BasePage {
 
@@ -20,7 +21,7 @@ public class AlertSettingsPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"mainContent\"]/div[3]/div[1]/div/div/div/div[2]/table/tbody/tr[9]/td[3]/div/div[1]/label/input")
     public WebElement lowBalanceCheckBox;
 
-    public String newBalance = "10000";
+
 
 
     public void setToggleAndEmailCheckBox() {
@@ -29,7 +30,7 @@ public class AlertSettingsPage extends BasePage {
     }
 
     public void changeLowBalance(String newBalance) {
-        wait.until(ExpectedConditions.visibilityOf(lowBalanceInputField));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(lowBalanceInputField));
         lowBalanceInputField.click();
         lowBalanceInputField.clear();
         lowBalanceInputField.sendKeys(newBalance);

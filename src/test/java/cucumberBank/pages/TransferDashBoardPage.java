@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-import static cucumberBank.context.TestContext.wait;
+import static cucumberBank.context.TestContext.*;
 
 public class TransferDashBoardPage extends BasePage {
 
@@ -46,7 +46,7 @@ public class TransferDashBoardPage extends BasePage {
     }
 
     public TransferDashBoardPage makeTransfer(String amount) {
-        wait.until(ExpectedConditions.visibilityOf(fieldTransferMoneyFrom));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(fieldTransferMoneyFrom));
         fieldTransferMoneyFrom.click();
         listTransferMoneyFrom.getFirst().click();
         fieldTransferMoneyTo.click();

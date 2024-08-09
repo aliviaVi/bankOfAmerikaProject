@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-import static cucumberBank.context.TestContext.wait;
+import static cucumberBank.context.TestContext.*;
 
 public class AccountsOverviewPage extends BasePage {
 
@@ -34,7 +34,7 @@ public class AccountsOverviewPage extends BasePage {
     }
 
     public String getTextFromOffersAndDealsButton() {
-        wait.until(ExpectedConditions.visibilityOf(textFromOffersAndDeals));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(textFromOffersAndDeals));
         return textFromOffersAndDeals.getText();
     }
 
@@ -49,13 +49,13 @@ public class AccountsOverviewPage extends BasePage {
 
     public void clickOnAlertsTab() throws InterruptedException {
         Thread.sleep(3000);
-        wait.until(ExpectedConditions.visibilityOf(alertsTab));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(alertsTab));
         alertsTab.click();
         popOverInAlertTab.click();
     }
 
     public String getAlertsText() {
-        wait.until(ExpectedConditions.visibilityOf(textInPopOver));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(textInPopOver));
         return textInPopOver.getText();
     }
 

@@ -6,7 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static cucumberBank.context.TestContext.wait;
+import static cucumberBank.context.TestContext.getWaitThreadLocal;
+
 
 public class AlertsPage extends BasePage {
 
@@ -26,13 +27,13 @@ public class AlertsPage extends BasePage {
 
     public String getTextFromTable()  {
         alertsHistoryTab.click();
-        wait.until(ExpectedConditions.visibilityOf(elementInTable));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(elementInTable));
         return textInTable.getText();
     }
 
     public AlertSettingsPage goToAlertsSettingsPage(){
         alertsSettingsTab.click();
-        wait.until(ExpectedConditions.visibilityOf(viewAlertsText));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(viewAlertsText));
         return  new AlertSettingsPage();
     }
 

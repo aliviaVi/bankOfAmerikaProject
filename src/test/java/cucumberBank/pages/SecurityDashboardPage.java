@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static cucumberBank.context.TestContext.wait;
+import static cucumberBank.context.TestContext.*;
 
 
 public class SecurityDashboardPage extends BasePage{
@@ -33,7 +33,7 @@ public class SecurityDashboardPage extends BasePage{
 
     public void changePassword(){
         slideBarUpdatePasswordButton.click();
-        wait.until(ExpectedConditions.visibilityOf(modalHeader));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(modalHeader));
         inputCurrentPasswordField.click();
         inputCurrentPasswordField.clear();
         inputCurrentPasswordField.sendKeys(ConfigurationReader.get("userPassword"));

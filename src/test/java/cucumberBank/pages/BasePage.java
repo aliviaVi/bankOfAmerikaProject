@@ -7,6 +7,6 @@ public class BasePage {
 
 
     public BasePage() {
-        PageFactory.initElements(TestContext.getDriver(), this);
+        PageFactory.initElements(TestContext.getThreadLocalDriver(), this);
     }
 }

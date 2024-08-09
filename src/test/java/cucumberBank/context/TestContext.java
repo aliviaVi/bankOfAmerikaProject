@@ -13,28 +13,30 @@ import java.time.Duration;
 public class TestContext {
 
 
-    public static WebDriver driver;
-    public static WebDriverWait wait;
-    public static Actions actions;
-    public  static JavascriptExecutor js;
-    public static StringBuilder logs;
+    private static final ThreadLocal<WebDriver>  threadLocalDriver = new ThreadLocal<>();
+    private static final ThreadLocal <WebDriverWait> threadLocalWait = new ThreadLocal<>();
+  //  private static final ThreadLocal<Actions> threadLocalActions = new ThreadLocal<>();
+    private static final ThreadLocal <JavascriptExecutor> threadLocalJs = new ThreadLocal<>();
+
     public static Scenario scenario;
 
 
-    public static  WebDriver getDriver(){
-        if(driver == null){
-            driver = DriverFactory.get();
-            wait =new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(ConfigurationReader.get("timeout"))));
-            actions = new Actions(driver);
-            js = (JavascriptExecutor) driver;
-        }
-        return driver;
+    public static  WebDriver getThreadLocalDriver(){
+        return threadLocalDriver.get();
+    }
+    public static WebDriverWait getWaitThreadLocal(){
+        return threadLocalWait.get();
     }
 
-    public static void closeDriver(){
-        if(driver !=null){
-            driver.quit();
-            driver =null;
-        }
+    public static void setThreadLocalDriver(WebDriver driver){
+        threadLocalDriver.set(driver);
+        threadLocalWait.set(new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(ConfigurationReader.get("timeout")))));
+        threadLocalJs.set((JavascriptExecutor)(driver));
     }
+
+    public static void closeThreadLocalDriver(){
+        threadLocalDriver.remove();
+    }
+
+
 }

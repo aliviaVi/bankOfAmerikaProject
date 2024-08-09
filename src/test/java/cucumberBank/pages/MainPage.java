@@ -1,6 +1,7 @@
 package cucumberBank.pages;
 
 import cucumberBank.context.TestContext;
+import cucumberBank.utils.DriverFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -42,7 +43,7 @@ public class MainPage extends BasePage {
 
 
     public MainPage cookieWeg() {
-        wait.until(ExpectedConditions.visibilityOf(cookieButton));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(cookieButton));
         cookieButton.click();
         return new MainPage();
     }
@@ -55,7 +56,7 @@ public class MainPage extends BasePage {
 
     public AccountsOverviewPage goToAccountOverviewPage() {
         accountOverviewButton.click();
-        wait.until(ExpectedConditions.visibilityOf(updateOnlineBankingBtn));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(updateOnlineBankingBtn));
         updateOnlineBankingBtn.click();
         return new AccountsOverviewPage();
 
@@ -67,25 +68,25 @@ public class MainPage extends BasePage {
     }
 
     public MobileAppSimulator goToMobileBanking() throws InterruptedException {
-        String mainWindow = getDriver().getWindowHandle();
+        String mainWindow = getThreadLocalDriver().getWindowHandle();
         mobileBankingButton.click();
-        Set<String> windowHandles = getDriver().getWindowHandles();
+        Set<String> windowHandles = getThreadLocalDriver().getWindowHandles();
         for (String window : windowHandles) {
             if (!window.equals(mainWindow)) {
-                getDriver().switchTo().window(window);
+                getThreadLocalDriver().switchTo().window(window);
             }
         }
-        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(deviceIframe));
+        getWaitThreadLocal().until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(deviceIframe));
 
         return new MobileAppSimulator();
     }
 
     public void closeWindowAfterAssert() {
-        String mainWindow = getDriver().getWindowHandle();
-        Set<String> windowHandles = getDriver().getWindowHandles();
+        String mainWindow = DriverFactory.get().getWindowHandle();
+        Set<String> windowHandles = DriverFactory.get().getWindowHandles();
         for (String window : windowHandles) {
             if (!window.equals(mainWindow)) {
-                getDriver().switchTo().window(mainWindow);
+                DriverFactory.get().switchTo().window(mainWindow);
             }
         }
     }
@@ -93,7 +94,7 @@ public class MainPage extends BasePage {
 
     public AlertSettingsPage goToAlertsSettingsPage() {
         alertsSettingsTab.click();
-        wait.until(ExpectedConditions.visibilityOf(viewAlertsText));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(viewAlertsText));
         return new AlertSettingsPage();
     }
 

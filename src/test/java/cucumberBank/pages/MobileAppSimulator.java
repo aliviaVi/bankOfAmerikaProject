@@ -27,9 +27,9 @@ public class MobileAppSimulator extends BasePage {
 
 
     public void mobileAppLogIn() {
-        wait.until(ExpectedConditions.visibilityOf(acceptMobileCookiesBtn));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(acceptMobileCookiesBtn));
         acceptMobileCookiesBtn.click();
-        wait.until(ExpectedConditions.visibilityOf(userNameField));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(userNameField));
         userNameField.click();
         userNameField.sendKeys(ConfigurationReader.get("userName"));
         passwordField.click();
@@ -38,12 +38,12 @@ public class MobileAppSimulator extends BasePage {
     }
 
     public String getHelloTextFromBankingApp() {
-        wait.until(ExpectedConditions.visibilityOf(elementWithTextAfterLogin));
+        getWaitThreadLocal().until(ExpectedConditions.visibilityOf(elementWithTextAfterLogin));
         return elementWithTextAfterLogin.getText();
     }
 
     public boolean isBankingSimulatorButtonPresent() {
-        driver.switchTo().defaultContent();
+        getThreadLocalDriver().switchTo().defaultContent();
         return onlineBankingSimulatorButton.isDisplayed();
     }
 }
