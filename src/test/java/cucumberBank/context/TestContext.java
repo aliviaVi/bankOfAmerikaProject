@@ -15,7 +15,6 @@ public class TestContext {
 
     private static final ThreadLocal<WebDriver>  threadLocalDriver = new ThreadLocal<>();
     private static final ThreadLocal <WebDriverWait> threadLocalWait = new ThreadLocal<>();
-  //  private static final ThreadLocal<Actions> threadLocalActions = new ThreadLocal<>();
     private static final ThreadLocal <JavascriptExecutor> threadLocalJs = new ThreadLocal<>();
 
     public static Scenario scenario;
@@ -34,7 +33,8 @@ public class TestContext {
         threadLocalJs.set((JavascriptExecutor)(driver));
     }
 
-    public static void closeThreadLocalDriver(){
+    public static void closeThreadLocalDriver()
+    {
         threadLocalDriver.remove();
     }
 

@@ -23,9 +23,10 @@ public class MobileBankingPageSteps {
     }
 
     @When("I log in mobile banking")
-    public void iLogInMobileBanking() {
+    public void iLogInMobileBanking(){
         mobileAppSimulator.mobileAppLogIn();
     }
+
 
     @Then("I should see greeting text and mobile banking button is present")
     public void iShouldSeeGreetingTextAndMobileBankingButtonIsPresent() {

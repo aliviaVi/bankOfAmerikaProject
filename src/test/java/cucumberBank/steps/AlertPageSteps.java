@@ -17,7 +17,7 @@ public class AlertPageSteps {
     public AlertsPage alertsPage = new AlertsPage();
     public AlertSettingsPage alertSettingsPage = new AlertSettingsPage();
 
-    String dateFromAlerts = "6/20/2024";
+    String dateFromAlerts = "6/29/2024";
 
 
 

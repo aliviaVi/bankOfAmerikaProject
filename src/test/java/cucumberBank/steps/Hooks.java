@@ -20,7 +20,7 @@ public class Hooks {
     public void set(Scenario scenario) {
         WebDriver driver = DriverFactory.get();
         TestContext.setThreadLocalDriver(driver);
-        driver.get(ConfigurationReader.get("base_url"));
+        driver.get(ConfigurationReader.get("url"));
         TestContext.scenario = scenario;
     }
 

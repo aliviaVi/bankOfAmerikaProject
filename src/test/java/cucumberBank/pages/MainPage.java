@@ -82,11 +82,11 @@ public class MainPage extends BasePage {
     }
 
     public void closeWindowAfterAssert() {
-        String mainWindow = DriverFactory.get().getWindowHandle();
-        Set<String> windowHandles = DriverFactory.get().getWindowHandles();
+        String mainWindow = getThreadLocalDriver().getWindowHandle();
+        Set<String> windowHandles = getThreadLocalDriver().getWindowHandles();
         for (String window : windowHandles) {
             if (!window.equals(mainWindow)) {
-                DriverFactory.get().switchTo().window(mainWindow);
+                getThreadLocalDriver().switchTo().window(mainWindow);
             }
         }
     }
