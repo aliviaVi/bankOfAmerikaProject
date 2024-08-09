@@ -86,7 +86,7 @@ public class MainPage extends BasePage {
         Set<String> windowHandles = getThreadLocalDriver().getWindowHandles();
         for (String window : windowHandles) {
             if (!window.equals(mainWindow)) {
-                getThreadLocalDriver().switchTo().window(mainWindow);
+                getThreadLocalDriver().switchTo().window(mainWindow).close();
             }
         }
     }
